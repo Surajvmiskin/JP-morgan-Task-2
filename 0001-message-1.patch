@@ -1,0 +1,38 @@
+From 5a8d8bb0499827788e63987cd9cef8f659d4003d Mon Sep 17 00:00:00 2001
+From: Suraj Vinod Miskin <114627861+Surajvmiskin@users.noreply.github.com>
+Date: Sat, 20 Jan 2024 14:00:45 +0000
+Subject: [PATCH] message=$1
+
+---
+ datafeed/server3.py | 2 +-
+ src/Graph.tsx       | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/datafeed/server3.py b/datafeed/server3.py
+index 68f4659..2fc5844 100644
+--- a/datafeed/server3.py
++++ b/datafeed/server3.py
+@@ -150,7 +150,7 @@ def order_book(orders, book, stock_name):
+ 
+ def generate_csv():
+     """ Generate a CSV of order history. """
+-    with open('test.csv', 'wb') as f:
++    with open('test.csv', 'w') as f:
+         writer = csv.writer(f)
+         for t, stock, side, order, size in orders(market()):
+             if t > MARKET_OPEN + SIM_LENGTH:
+diff --git a/src/Graph.tsx b/src/Graph.tsx
+index 6fd6884..589c17a 100644
+--- a/src/Graph.tsx
++++ b/src/Graph.tsx
+@@ -32,6 +32,7 @@ class Graph extends Component<IProps, {}> {
+ 
+   componentDidMount() {
+     // Get element to attach the table from the DOM.
++    
+     const elem = document.getElementsByTagName('perspective-viewer')[0] as unknown as PerspectiveViewerElement;
+   
+     if (!elem) {
+-- 
+2.43.0
+
